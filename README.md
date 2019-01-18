@@ -111,7 +111,7 @@ This will cause the icon to instantly appear (instead of sliding in, due to the 
 
 
 ### About OSError: [Errno 2] No such file or directory: '/var/log/sixad'
-The log of sixad was changed to /var/log/syslog now, you should filter it to /var/log/sixad manually:
+The log of sixad was merged into /var/log/syslog after RetroPie 4.4, you should filter it to /var/log/sixad manually:
 
 sudo vi /etc/systemd/system/sixad.service:
 add the following lines:
