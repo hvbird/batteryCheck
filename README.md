@@ -110,7 +110,7 @@ dispCmdOptions = '-x 0 -y 0 -s 1000 -t 6'
 This will cause the icon to instantly appear (instead of sliding in, due to the large -s value) in the very top left corner of the screen (x=0, y=0), and stay on screen for 6 seconds (the -t option). The full list of options can be found in code folder ReadMe.
 
 
-### About OSError: [Errno 2] No such file or directory: '/var/log/sixad'
+## About OSError: [Errno 2] No such file or directory: '/var/log/sixad'
 The log of sixad was merged into /var/log/syslog after RetroPie 4.4, you should filter it to /var/log/sixad manually:
 
 change /etc/systemd/system/sixad.service as below:
