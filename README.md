@@ -108,3 +108,24 @@ Try changing this to something like:
 dispCmdOptions = '-x 0 -y 0 -s 1000 -t 6'
 ```
 This will cause the icon to instantly appear (instead of sliding in, due to the large -s value) in the very top left corner of the screen (x=0, y=0), and stay on screen for 6 seconds (the -t option). The full list of options can be found in code folder ReadMe.
+
+
+### About OSError: [Errno 2] No such file or directory: '/var/log/sixad'
+The log of sixad was changed to /var/log/syslog now, you should filter it to /var/log/sixad manually:
+
+sudo vi /etc/systemd/system/sixad.service:
+add the following lines:
+```
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=sixadlog
+```
+
+sudo vi /etc/rsyslog.d/sixadlog.conf:
+```
+if $programname == 'sixadlog' then /var/log/sixad
+& stop
+```
+
+sudo reboot
+
