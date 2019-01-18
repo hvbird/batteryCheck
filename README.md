@@ -126,6 +126,6 @@ sudo vi /etc/rsyslog.d/sixadlog.conf:
 if $programname == 'sixadlog' then /var/log/sixad
 & stop
 ```
-
+```
 sudo reboot
-
+```
