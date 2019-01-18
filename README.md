@@ -113,15 +113,25 @@ This will cause the icon to instantly appear (instead of sliding in, due to the 
 ### About OSError: [Errno 2] No such file or directory: '/var/log/sixad'
 The log of sixad was merged into /var/log/syslog after RetroPie 4.4, you should filter it to /var/log/sixad manually:
 
-sudo vi /etc/systemd/system/sixad.service:
-add the following lines:
+change /etc/systemd/system/sixad.service as below:
 ```
+[Unit]
+Description=SixA Daemon service
+After=bluetooth.service
+
+[Service]
+ExecStart=/usr/bin/sixad start
+ExecStop=/usr/bin/sixad stop
 StandardOutput=syslog
 StandardError=syslog
 SyslogIdentifier=sixadlog
+CapabilityBoundingSet=CAP_NET_ADMIN CAP_NET_BIND_SERVICE
+
+[Install]
+WantedBy=bluetooth.target
 ```
 
-sudo vi /etc/rsyslog.d/sixadlog.conf:
+create /etc/rsyslog.d/sixadlog.conf with below codes:
 ```
 if $programname == 'sixadlog' then /var/log/sixad
 & stop
